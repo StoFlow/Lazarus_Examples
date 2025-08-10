@@ -1,0 +1,195 @@
+object frm_StrRev_: Tfrm_StrRev_
+  Left = 509
+  Height = 211
+  Top = 384
+  Width = 653
+  Caption = 'String reverse'
+  ClientHeight = 211
+  ClientWidth = 653
+  SessionProperties = 'FontCombo1.ItemIndex;Height;Left;sped_TextSize.Value;Top;Width;chb_Fixed.Checked;chb_Mono.Checked;chb_Varbl.Checked'
+  LCLVersion = '4.99.0.0'
+  OnClose = FormClose
+  OnShow = FormShow
+  object btn_reVerse: TButton
+    Cursor = crHandPoint
+    Left = 578
+    Height = 162
+    Top = 26
+    Width = 75
+    Align = alRight
+    Caption = '&Reverse!'
+    Color = 10546837
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+    OnClick = btn_reVerseClick
+  end
+  object mem_Str2Rev: TMemo
+    Left = 0
+    Height = 162
+    Top = 26
+    Width = 578
+    Align = alClient
+    BorderStyle = bsNone
+    Font.Height = 20
+    HideSelection = False
+    Lines.Strings = (
+      ' '
+    )
+    ParentFont = False
+    TabOrder = 0
+    WantTabs = True
+    WordWrap = False
+    OnChange = mem_Str2RevChange
+    OnClick = mem_Str2RevClick
+    OnKeyUp = mem_Str2RevKeyUp
+  end
+  object pn_Top: TPanel
+    Left = 0
+    Height = 26
+    Top = 0
+    Width = 653
+    Align = alTop
+    Alignment = taLeftJustify
+    BevelOuter = bvNone
+    Caption = ' Attributes'
+    ClientHeight = 26
+    ClientWidth = 653
+    TabOrder = 2
+    object btn_Exit: TButton
+      Left = 578
+      Height = 26
+      Top = 0
+      Width = 75
+      Align = alRight
+      Caption = 'E&xit'
+      TabOrder = 0
+      OnClick = btn_ExitClick
+    end
+    object sped_TextSize: TSpinEdit
+      Left = 98
+      Height = 23
+      Top = 1
+      Width = 85
+      Alignment = taRightJustify
+      AutoSize = False
+      MinValue = 2
+      TabOrder = 1
+      OnChange = sped_TextSizeChange
+    end
+    object FontCombo1: tFontCombo
+      Left = 238
+      Height = 23
+      Top = 1
+      Width = 176
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Color = 11589859
+      DropDownCount = 16
+      Font.Height = 19
+      ItemHeight = 17
+      ParentFont = False
+      Sorted = True
+      TabOrder = 2
+      OnChange = FontCombo1Change
+      OnClick = FontCombo1Click
+      OnEnter = FontCombo1Enter
+      Pitches = [fp_FIXED_PITCH]
+      DesignTime = False
+      ApplyChain = <      
+        item
+          WinControl = mem_Str2Rev
+        end>
+      PreView = True
+      PicSize = fcps_16
+      TransparentBitmapColor = clBlue
+    end
+    object chb_Fixed: TCheckBox
+      Left = 426
+      Height = 19
+      Top = 1
+      Width = 37
+      Anchors = [akTop, akRight]
+      Caption = '&Fxd'
+      Checked = True
+      State = cbChecked
+      TabOrder = 3
+      OnChange = chb_FixedChange
+    end
+    object chb_Varbl: TCheckBox
+      Left = 472
+      Height = 19
+      Top = 1
+      Width = 35
+      Anchors = [akTop, akRight]
+      Caption = '&Var'
+      TabOrder = 4
+      OnChange = chb_VarblChange
+    end
+    object chb_Mono: TCheckBox
+      Left = 514
+      Height = 19
+      Top = 1
+      Width = 43
+      Anchors = [akTop, akRight]
+      Caption = '&Mno'
+      TabOrder = 5
+      OnChange = chb_MonoChange
+    end
+    object lbl_Fonts: TLabel
+      Left = 204
+      Height = 15
+      Top = 3
+      Width = 30
+      Caption = ' F&ont '
+      FocusControl = FontCombo1
+    end
+    object lbl_Size: TLabel
+      Left = 73
+      Height = 15
+      Top = 3
+      Width = 23
+      Caption = ' Si&ze'
+      FocusControl = sped_TextSize
+    end
+  end
+  object sb_Status: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 188
+    Width = 653
+    Panels = <    
+      item
+        Width = 88
+      end    
+      item
+        Width = 88
+      end    
+      item
+        Width = 88
+      end    
+      item
+        Width = 88
+      end    
+      item
+        Width = 50
+      end>
+    SimplePanel = False
+  end
+  object jpsStorage: TJSONPropStorage
+    StoredValues = <>
+    JSONFileName = 'strRev.json'
+    Formatted = True
+    OnSaveProperties = jpsStorageSaveProperties
+    OnRestoreProperties = jpsStorageRestoreProperties
+    Left = 330
+    Top = 146
+  end
+  object tim_Load: TTimer
+    Enabled = False
+    Interval = 444
+    OnTimer = tim_LoadTimer
+    Left = 402
+    Top = 148
+  end
+end
