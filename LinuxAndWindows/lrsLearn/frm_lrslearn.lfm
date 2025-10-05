@@ -1,0 +1,630 @@
+object tfrm_lrslearn_: tfrm_lrslearn_
+  Left = 265
+  Height = 702
+  Top = 152
+  Width = 1138
+  Caption = 'lrsLearn'
+  ClientHeight = 702
+  ClientWidth = 1138
+  SessionProperties = 'Height;lbet_AutoExpFld.Text;Left;mem_Source.Lines;pn_Left.Width;Top;Width;pn_LeftBtm.Height'
+  LCLVersion = '4.99.0.0'
+  OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  OnShow = FormShow
+  object pn_Client: TPanel
+    Left = 765
+    Height = 702
+    Top = 0
+    Width = 373
+    Align = alClient
+    Anchors = [akTop, akRight]
+    BevelOuter = bvNone
+    Caption = ' '
+    ClientHeight = 702
+    ClientWidth = 373
+    TabOrder = 1
+    object lbx_Ress: TListBox
+      Left = 5
+      Height = 264
+      Top = 32
+      Width = 317
+      Anchors = [akTop, akLeft, akRight]
+      Columns = 1
+      ItemHeight = 0
+      TabOrder = 0
+      OnClick = lbx_RessClick
+    end
+    object lbl_ResLst: TLabel
+      Left = 5
+      Height = 18
+      Hint = 'Avoid duplocate names!'
+      Top = 12
+      Width = 352
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Resour&ces'
+      FocusControl = lbx_Ress
+      ParentShowHint = False
+      ShowHint = True
+    end
+    object img_prev: TImage
+      Left = 5
+      Height = 324
+      Hint = 'Click to copy to clipboard'
+      Top = 346
+      Width = 352
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      ParentShowHint = False
+      Proportional = True
+      ShowHint = True
+      Stretch = True
+      OnClick = img_prevClick
+    end
+    object lbl_SimgPrev: TLabel
+      Left = 707
+      Height = 15
+      Top = 326
+      Width = 352
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Image (if available)'
+      FocusControl = lbx_Ress
+    end
+    object btn_Export: TButton
+      Left = 329
+      Height = 23
+      Hint = 'Exports selected resource to binary file...'
+      Top = 79
+      Width = 28
+      Anchors = [akTop, akRight]
+      Caption = '&E'
+      Enabled = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 3
+      OnClick = btn_ExportClick
+    end
+    object btn_Replace: TButton
+      Left = 329
+      Height = 23
+      Hint = 'Replaces selected resource from binary file...'
+      Top = 103
+      Width = 28
+      Anchors = [akTop, akRight]
+      Caption = 'R'
+      Enabled = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 4
+      OnClick = btn_ReplaceClick
+    end
+    object btn_SelAutoExpFldr: TButton
+      Left = 295
+      Height = 23
+      Hint = 'Helps to select the AEoC-Folder...'
+      Top = 300
+      Width = 28
+      Anchors = [akTop, akRight]
+      Caption = '&...'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 13
+      OnClick = btn_SelAutoExpFldrClick
+    end
+    object lbet_AutoExpFld: TLabeledEdit
+      Left = 87
+      Height = 23
+      Hint = 'Auto-Export on Click (none if empty)'
+      Top = 300
+      Width = 205
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      EditLabel.Height = 23
+      EditLabel.Hint = 'Auto-Export on Click (none if empty)'
+      EditLabel.Width = 70
+      EditLabel.Alignment = taRightJustify
+      EditLabel.Caption = 'AEoC-&Folder '
+      EditLabel.ParentShowHint = False
+      EditLabel.ShowHint = True
+      LabelPosition = lpLeft
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 12
+      OnChange = lbet_AutoExpFldChange
+    end
+    object btn_SelWriteBack: TButton
+      Left = 329
+      Height = 23
+      Hint = 'Insert selected resource (as script) on top of the script editor (left)'
+      Top = 247
+      Width = 28
+      Anchors = [akTop, akRight]
+      Caption = '&<+'
+      Enabled = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 10
+      OnClick = btn_SelWriteBackClick
+    end
+    object btn_AllWriteBack: TButton
+      Left = 329
+      Height = 23
+      Hint = 'Replaces the whole script in the editor (left) with resources from the list'
+      Top = 271
+      Width = 28
+      Anchors = [akTop, akRight]
+      Caption = '<<'
+      Enabled = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 11
+      OnClick = btn_AllWriteBackClick
+    end
+    object btn_Import: TButton
+      Left = 329
+      Height = 23
+      Hint = 'Imports (add to list) a resource from binary file...'
+      Top = 127
+      Width = 28
+      Anchors = [akTop, akRight]
+      Caption = '&I'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 5
+      OnClick = btn_ImportClick
+    end
+    object btn_New: TButton
+      Left = 329
+      Height = 23
+      Hint = 'Adds or copies (if selected) a resource!'
+      Top = 151
+      Width = 28
+      Anchors = [akTop, akRight]
+      Caption = '&+'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 6
+      OnClick = btn_NewClick
+    end
+    object btn_EditRes: TButton
+      Left = 329
+      Height = 23
+      Hint = 'Edit type and name'
+      Top = 175
+      Width = 28
+      Anchors = [akTop, akRight]
+      Caption = 'T+&N'
+      Enabled = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 7
+      OnClick = btn_EditResClick
+    end
+    object btn_RemoveRes: TButton
+      Left = 329
+      Height = 23
+      Hint = 'Removes selected resource...'
+      Top = 199
+      Width = 28
+      Anchors = [akTop, akRight]
+      Caption = '-'
+      Enabled = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 8
+      OnClick = btn_RemoveResClick
+    end
+    object btn_clearLBX: TButton
+      Left = 329
+      Height = 23
+      Hint = 'Clears the list...'
+      Top = 223
+      Width = 28
+      Anchors = [akTop, akRight]
+      Caption = 'C'
+      Enabled = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 9
+      OnClick = btn_clearLBXClick
+    end
+    object btn_SaveLBX: TButton
+      Left = 329
+      Height = 23
+      Hint = 'Saves the list to a file...'
+      Top = 31
+      Width = 28
+      Anchors = [akTop, akRight]
+      Caption = '&S'
+      Enabled = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 1
+      OnClick = btn_SaveLBXClick
+    end
+    object btn_opnAutSvFldr: TBitBtn
+      Left = 329
+      Height = 23
+      Hint = 'Opens the file explorer at AEoC-Folder'
+      Top = 299
+      Width = 28
+      Anchors = [akTop, akRight]
+      BorderSpacing.CellAlignHorizontal = ccaRightBottom
+      BorderSpacing.CellAlignVertical = ccaRightBottom
+      Enabled = False
+      Glyph.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        1800000000000000000000000000000000000000000000000000BF32CDBF32CD
+        BF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32
+        CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF
+        32CDBF32CDBF32CDBF32CD000000BF32CDBF32CDBF32CDBF32CDBF32CDBF32CD
+        BF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CD000000FFFFFF0000
+        00BF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CD000000BF
+        32CDBF32CD000000C8C8C8FFFFFFFFFFFF000000BF32CDBF32CDBF32CDBF32CD
+        0A484B0A484B0A484B0A484B000000000000000000929292C8C8C8C8C8C80000
+        000A484BBF32CDBF32CDBF32CD0A484BB7F6F1B7F6F1B7F6F1B7F6F10000005B
+        5B5B6D6D6D929292929292000000B7F6F1B7F6F10A484BBF32CDBF32CD0A484B
+        B7F6F1B7F6F1B7F6F1B7F6F10000005B5B5B6D6D6D6D6D6D000000B7F6F1B7F6
+        F1B7F6F10A484BBF32CDBF32CD0A484BB7F6F1B7F6F1B7F6F1B7F6F10000005B
+        5B5B5B5B5B5B5B5B000000B7F6F1B7F6F1B7F6F10A484BBF32CDBF32CD0A484B
+        B7F6F1B7F6F1B7F6F1B7F6F1000000000000000000000000000000000000B7F6
+        F1B7F6F10A484BBF32CDBF32CD0A484BB7F6F1B7F6F1B7F6F1B7F6F1B7F6F1B7
+        F6F1B7F6F1B7F6F1B7F6F1B7F6F1B7F6F1B7F6F10A484BBF32CDBF32CD0A484B
+        B7F6F1B7F6F1B7F6F1B7F6F1B7F6F1B7F6F1B7F6F1B7F6F1B7F6F1B7F6F1B7F6
+        F1B7F6F10A484BBF32CDBF32CD0A484BB7F6F1B7F6F1B7F6F1B7F6F1B7F6F1B7
+        F6F1B7F6F1B7F6F1B7F6F1B7F6F1B7F6F1B7F6F10A484BBF32CDBF32CD0A484B
+        B7F6F1B7F6F1B7F6F1B7F6F10A484B0A484B0A484B0A484B0A484B0A484B0A48
+        4B0A484BBF32CDBF32CDBF32CD0A484BB7F6F1B7F6F1B7F6F1B7F6F10A484BBF
+        32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CD
+        0A484B0A484B0A484B0A484BBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32
+        CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF
+        32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CDBF32CD
+      }
+      GlyphShowMode = gsmAlways
+      Layout = blGlyphBottom
+      ParentShowHint = False
+      ShowHint = True
+      Spacing = 2
+      TabOrder = 14
+      OnClick = btn_opnAutSvFldrClick
+    end
+    object btn_LoadLBX: TButton
+      Left = 329
+      Height = 23
+      Hint = 'Opens/loads the list from a file... (old list will be discarded before!)'
+      Top = 55
+      Width = 28
+      Anchors = [akTop, akRight]
+      Caption = '&O'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 2
+      OnClick = btn_LoadLBXClick
+    end
+  end
+  object pn_Left: TPanel
+    Left = 0
+    Height = 702
+    Top = 0
+    Width = 758
+    Align = alLeft
+    BevelOuter = bvNone
+    Caption = ' '
+    ClientHeight = 702
+    ClientWidth = 758
+    TabOrder = 0
+    object pn_LeftBtm: TPanel
+      Left = 0
+      Height = 436
+      Top = 266
+      Width = 758
+      Align = alBottom
+      BevelOuter = bvNone
+      Caption = ' '
+      ClientHeight = 436
+      ClientWidth = 758
+      TabOrder = 1
+      object btn_ResetProfile: TButton
+        Left = 13
+        Height = 25
+        Hint = 'delete profile file and restart'
+        Top = 370
+        Width = 75
+        Anchors = [akLeft, akBottom]
+        Caption = 'Reset'
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 3
+        OnClick = btn_ResetProfileClick
+      end
+      object lbl_Msgs: TLabel
+        Left = 96
+        Height = 18
+        Top = 9
+        Width = 653
+        Anchors = [akTop, akLeft, akRight]
+        AutoSize = False
+        Caption = 'Messages'
+        FocusControl = mem_CompMsgs
+      end
+      object mem_CompMsgs: TMemo
+        Left = 96
+        Height = 393
+        Top = 29
+        Width = 653
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        Lines.Strings = (
+          ' '
+        )
+        ScrollBars = ssAutoBoth
+        TabOrder = 1
+      end
+      object btn_Exit: TButton
+        Left = 13
+        Height = 25
+        Top = 397
+        Width = 75
+        Anchors = [akLeft, akBottom]
+        Caption = 'E&xit'
+        TabOrder = 2
+        OnClick = btn_ExitClick
+      end
+      object btn_EmptMsgs: TButton
+        Left = 13
+        Height = 25
+        Top = 29
+        Width = 75
+        Caption = 'Empt&y'
+        TabOrder = 0
+        OnClick = btn_EmptMsgsClick
+      end
+    end
+    object spl_LeftBtm2Clt: TSplitter
+      Cursor = crVSplit
+      Left = 0
+      Height = 7
+      Top = 259
+      Width = 758
+      Align = alBottom
+      Color = 7137641
+      ParentColor = False
+      ResizeAnchor = akBottom
+    end
+    object pn_LeftClt: TPanel
+      Left = 0
+      Height = 259
+      Top = 0
+      Width = 758
+      Align = alClient
+      Caption = ' '
+      ClientHeight = 259
+      ClientWidth = 758
+      TabOrder = 0
+      object mem_Source: TMemo
+        Left = 96
+        Height = 221
+        Top = 32
+        Width = 653
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -11
+        Font.Name = 'Courier New'
+        Font.Pitch = fpFixed
+        Font.Quality = fqDraft
+        HideSelection = False
+        Lines.Strings = (
+          'LazarusResources.Add(''tFontCombo'',''PNG'',['
+          '  #137''PNG''#13#10#26#10#0#0#0#13''IHDR''#0#0#0#24#0#0#0#24#8#6#0#0#0#224''w=''#248#0'
+          '  +#0#0#9''pHYs''#0#0#11#19#0#0#11#19#1#0#154#156#24#0#0#0#224''IDATH''#199#229''U'''
+          '  +#209#17#4#17#12#205#222''hI''#21''~''#149#192''hC''#31#148#144''_5)''#227#238#139#193'
+          '  +#10''v''#199#238#207''e''#198#24#187#145#228#197''{''#0''<l''#7#0#128''s''#238#251''Dp'''
+          '  +#173#245#193#210''B''#8#177#188''1''#132#0''J''#169#161#143#247#30#0#0''>)S''#8#225'
+          '  +''r''#133''1''#198#238''0''#198''d''#31#150''Z''#212''"''#144''R''#158#2''"''#226#229''"XB'''
+          '  +#208''K''#178#18#176''-''#164#221''C"h7''#223#169''~z''#6#136#152#7''e''#229#191#158'
+          '  +#223#16#193#170#141#10'' ''#17#220''m''#201''V''#4#214#218''?P''#242''P''#7''3''#154#198'
+          '  +#24#201#214''q''#206#231''J.''#131#182#235''-:Xe''#149#148#178''{''#181#228#4''+,''#162'
+          '  +#2#148#223''{>''#228#25'' ''#226#210''U1k''#219''P''#7'';''#196''V!''#152''Q''#239#142#208'
+          '  +''*''#4#20#237#168#199''f''#148'' ''#145#230#196#162'']se''#233#170#216''=''#191''b?my'''
+          '  +#220#152''n"''#136#177#0#0#0#0''IEND''#174''B`''#130'
+          ']);'
+          'LazarusResources.Add(''tFontCombo_150'',''PNG'',['
+          '  #137''PNG''#13#10#26#10#0#0#0#13''IHDR''#0#0#0''$''#0#0#0''$''#8#6#0#0#0#225#0#152#152'
+          '  +#0#0#0#9''pHYs''#0#0#11#19#0#0#11#19#1#0#154#156#24#0#0#1#143''IDATX''#195#213''V'''
+          '  +#205#205#132'' ''#16#197#141#21''mB''#21''$f''#15#148'' 1va''#23''{''#144#18''<''#152''M'''
+          '  +#168#194#196''6(''#195#239''4~''#3#130''?''#168#11'';''#201#198''e''#130#206#203''cx'''
+          '  +#243#8''I,2''#248#211#182#237#20#27#140#16''"''#203#1#12''c''#236#182''BJ)R''#150#229'
+          '  +#234#30'')%!''#132#144#28#144''aP''#5#235#141#205#31#245#186#4#152#214#218#153''o'''
+          '  +#154#134''PJ''#255#1#185#24'':''#3#162''`}''#240#251''N''#134#214#10''a''#176#152''I;'''
+          '  +#231#3#197''97''#214'']''#215#25#235#135#143#161#130#245''FA(''#240''Q''#175#5#16#156'
+          '  +#3#16#161#12''=''#128''!''#165#212#226#200#174#234#29#31''#6;''#171''=tg''#184#128''l'''
+          '  +''2d''#7#28#203#222#134#181''o''#234''!a''#252#150#14''UU''#229#221''C)%B''#136'',9''#165'
+          '  +#158#193#220#25''{''#190#15#132#228#8#217#4#242''N''#159''o''#3#249''0''#214#223''Wj{'''
+          '  +#214#156#1''A''#159#239#224#247#231''[''#6#195''m''#171#16''f''#15#214''v''#206#197#242'
+          '  +''!@.''#134''\''#133#134#177''&''#195''X''#27''y;''#7#204#172''1''#196''9_''#140#144''M''#134'
+          '  +#160#208#213#129#129#184''@y{(''#134''J''#31#234''!8''#150#189#13#27#218''C''#179''R'''
+          '  +#11''!''#178''i''#154''n''#17''G)''#229#239''*ur''#158''z''#247#180#191''b''#154''k''#173#157'
+          '  +''?|''#148#143#24''~(''#200''S''#251#24#192''^''#200#182#173#190''\''#144''R''#187#24#194'
+          '  +''6v''#143#159#246#249#238''K<u''#172#248#157#30'':r''#211#240#177#158#237#161#228'
+          '  +''<5''#193''J''#157#140#133#5#134''|''#22#243''N''#251#186''y''#203''b=''#141#0#186''b?'''
+          '  +#147#140''? ''#9#150#164#216#250#212#6#0#0#0#0''IEND''#174''B`''#130'
+          ']);'
+          'LazarusResources.Add(''tFontCombo_200'',''PNG'',['
+          '  #137''PNG''#13#10#26#10#0#0#0#13''IHDR''#0#0#0''0''#0#0#0''0''#8#6#0#0#0''W''#2#249#135'
+          '  +#0#0#0#9''pHYs''#0#0#11#19#0#0#11#19#1#0#154#156#24#0#0#1#252''IDATh''#222#237''X'''
+          '  +#205#205#131''0''#12#13#136#137''*e''#10#164#170#7''F''#0''!''#182''`''#139#30#154#17'
+          '  +''8''#160''J''#153#2#137''5''#24#131#239#148#202''1N''#248''mH''#250''a''#169#130#24#168'
+          '  +#236#188''8''#239''9''#140'']v''#217''.''#139#224#224#245''z''#141#161#4''^''#20''E''#196'
+          '  +#24''c''#9#12''>M''#211#211#3#147''R''#178''<''#207#173#239#8''!>''#247#9#204#8''&qO['''
+          '  +#237#163#183''|8Md''#24#6#210''_''#215''5''#227#156''O''#19#160#16#216#19#244''=m''#157'
+          '  +''$mD''#192#22#24''L''#14''"''#133''}{''#147#200#178''L''#27''7M3y''''''#182''!pO[-@''#21#208'
+          '  +''[>&''#129''C''#159#10#218#5#2''1D@J9YB''#174#215#190''i''#198#169#217#247''r''#23#178'
+          '  +''%''#177#26#1''lj''#153'',]''#219''x''''''#251''*''#145#249#198#3''eY''#26#223#225#156#127'
+          '  +#136'',x&''#214#130#247#193#150#196#1'''''':A''#25#141#138#198#249#237#169''%''#216'
+          '  +#245#149#255''L''#140''5''#200#158#160#249#237#233''$im''#23#130''"''#201#22#24''DG'''
+          '  +#141#177#143''Bq+''#27''cF621F''#128#10#172#235''+''#214#245#149#230#199''>5''#243''{'''
+          '  +#17#128#129#155#146''0''#214#192#25#235''~-''#137#205''"''#16#130#173#170#1#181''L'''
+          '  +#150#22#232#17''5''#176#138#137#139#162#136#198''q<''#149#204#132#16#255#139#137'
+          '  +#131#239#137#173''jT)''#207#189#170''r''#203#247#195''0''#144''?''#188#180#140#8''`'''
+          '  +#201#236#170#199''=''#180''#35''#248#20''*''#208''7''#247#220#230#219#220#212''/''#173'
+          '  +#1#136#132#186#167''|''#248''~''#233''7_C''#192''{"''#155''C''#192''E{x''#232#185#16''ut'''
+          '  +#130#253''k`''#167#142''\''#182#252#207#207#245#196#222#181#149#155''[J''#133#128'
+          '  +#169#149#243#161#157''\''#181#11#249''Z''#180#155''w''#161'' ''#250#1#147#22#178#249'
+          '  +#168#231#222'' ''#128''O''#157#169#211''i''#234#185#151''Z''#200''fX''#26#4''W''#3''P''#223'
+          '  +''xY''#3#152''=m''#130#205''u''#18''F5jZ''#14#216''?7v''#174#133''B;Z''#137'')''#22#20''B'''
+          '  +#156''vUz''#200''v%M''#233#139''P''#174#151#249''b''#127''P''#246#155''?Y*''#135#138#0#0'
+          '  +#0#0''IEND''#174''B`''#130'
+          ']);'
+        )
+        ParentFont = False
+        ScrollBars = ssAutoBoth
+        TabOrder = 1
+        OnChange = mem_SourceChange
+        OnKeyUp = mem_SourceKeyUp
+      end
+      object btn_Start: TButton
+        Left = 13
+        Height = 25
+        Hint = 'Replaces list from LR-Script'
+        Top = 228
+        Width = 75
+        Anchors = [akLeft, akBottom]
+        Caption = '>>'
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 2
+        OnClick = btn_StartClick
+      end
+      object btn_LoadLRS: TButton
+        Left = 13
+        Height = 25
+        Top = 32
+        Width = 75
+        Caption = '&Load LRS'
+        TabOrder = 0
+        OnClick = btn_LoadLRSClick
+      end
+      object btn_SaveLRS: TButton
+        Left = 13
+        Height = 25
+        Top = 60
+        Width = 75
+        Caption = 'S&ave LRS'
+        TabOrder = 3
+        OnClick = btn_SaveLRSClick
+      end
+      object lbl_Src: TLabel
+        Left = 96
+        Height = 16
+        Top = 12
+        Width = 653
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        AutoSize = False
+        Caption = 'LR&-Script'
+        FocusControl = mem_Source
+      end
+      object btn_appendStart: TButton
+        Left = 13
+        Height = 25
+        Hint = 'Appends to list from LR-Script'
+        Top = 200
+        Width = 75
+        Anchors = [akLeft, akBottom]
+        Caption = '&>'
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 4
+        OnClick = btn_appendStartClick
+      end
+    end
+  end
+  object spl_l2c: TSplitter
+    Left = 758
+    Height = 702
+    Top = 0
+    Width = 7
+    AutoSnap = False
+    Color = clYellow
+    ParentColor = False
+  end
+  object sd_ResFromLBX: TSaveDialog
+    Title = 'Save selected resource to file...'
+    DefaultExt = '.*.laz.res'
+    Filter = 'Alle Typen (*.*)|*.*|Portable Network Graphic (*.png)|*.png|Windows Bitmap (*.bmp)|*.bmp'
+    Options = [ofOverwritePrompt, ofExtensionDifferent, ofPathMustExist, ofNoReadOnlyReturn, ofNoTestFileCreate, ofNoDereferenceLinks, ofEnableIncludeNotify, ofEnableSizing, ofForceShowHidden, ofViewDetail]
+    Left = 758
+    Top = 205
+  end
+  object sfd_SelFldr: TSelectDirectoryDialog
+    Title = 'Select auto export directory'
+    Options = [ofHideReadOnly, ofPathMustExist, ofNoReadOnlyReturn, ofEnableSizing, ofViewDetail]
+    Left = 969
+    Top = 298
+  end
+  object jpsStorage: TJSONPropStorage
+    StoredValues = <>
+    Formatted = True
+    OnSaveProperties = jpsStorageSaveProperties
+    OnRestoreProperties = jpsStorageRestoreProperties
+    Left = 32
+    Top = 390
+  end
+  object tim_Load: TTimer
+    Enabled = False
+    Interval = 444
+    OnTimer = tim_LoadTimer
+    Left = 32
+    Top = 338
+  end
+  object od_SingleLBXRes: TOpenDialog
+    Title = '%verb% selected resource from file...'
+    Filter = 'Alle Typen (*.*)|*.*|Portable Network Graphic (*.png)|*.png|Windows Bitmap (*.bmp)|*.bmp'
+    Options = [ofExtensionDifferent, ofPathMustExist, ofFileMustExist, ofNoTestFileCreate, ofEnableSizing, ofForceShowHidden, ofViewDetail]
+    Left = 841
+    Top = 205
+  end
+  object sd_saveLRS: TSaveDialog
+    Title = 'Save script ro file...'
+    DefaultExt = '.lrs'
+    Filter = 'Lazarus Resource Script|*.lrs|Alle Typen (*.*)|*.*'
+    Options = [ofOverwritePrompt, ofExtensionDifferent, ofPathMustExist, ofNoReadOnlyReturn, ofNoTestFileCreate, ofNoDereferenceLinks, ofEnableIncludeNotify, ofEnableSizing, ofForceShowHidden, ofViewDetail]
+    Left = 526
+    Top = 192
+  end
+  object od_loadLRS: TOpenDialog
+    Title = 'Load script from file...'
+    DefaultExt = '.lrs'
+    Filter = 'Lazarus Resource Script|*.lrs|Alle Typen (*.*)|*.*'
+    Options = [ofExtensionDifferent, ofPathMustExist, ofFileMustExist, ofNoTestFileCreate, ofEnableSizing, ofForceShowHidden, ofViewDetail]
+    Left = 603
+    Top = 192
+  end
+  object fd_Source: TFindDialog
+    Options = [frDown, frHideMatchCase, frHideWholeWord, frHideUpDown, frDisableMatchCase, frDisableUpDown, frDisableWholeWord, frHideEntireScope, frHidePromptOnReplace]
+    OnFind = fd_SourceFind
+    Left = 606
+    Top = 136
+  end
+  object sd_saveLBX: TSaveDialog
+    Title = 'Save resource list  ro file'
+    DefaultExt = '.lrs'
+    Filter = 'Lazarus Resource Script|*.lrs|#990 binary Jason|*.json'
+    Options = [ofOverwritePrompt, ofExtensionDifferent, ofPathMustExist, ofNoReadOnlyReturn, ofNoTestFileCreate, ofNoDereferenceLinks, ofEnableIncludeNotify, ofEnableSizing, ofForceShowHidden, ofViewDetail]
+    Left = 998
+    Top = 48
+  end
+  object tim_AEoC: TTimer
+    Enabled = False
+    Interval = 222
+    OnTimer = tim_AEoCTimer
+    Left = 910
+    Top = 298
+  end
+  object od_loadLBX: TOpenDialog
+    Title = 'Add or replace resource list from file...'
+    Filter = 'Lazarus Resource Script|*.lrs|#990 binary Jason|*.json'
+    Options = [ofPathMustExist, ofFileMustExist, ofNoTestFileCreate, ofEnableSizing, ofForceShowHidden, ofViewDetail]
+    Left = 998
+    Top = 107
+  end
+end
