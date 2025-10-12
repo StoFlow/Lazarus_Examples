@@ -21,7 +21,7 @@ Uses
 
 Begin
           RequireDerivedFormResource:=True;
-  Application.Scaled:=True;
+          Application.Scaled:=True;
           {$PUSH}{$WARN 5044 OFF}
           Application.MainFormOnTaskbar:= True;
           {$POP}

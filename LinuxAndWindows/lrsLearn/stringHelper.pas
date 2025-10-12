@@ -33,6 +33,7 @@ Type
              Function                       loadFromFile( aFileName: String): boolEan;
              Procedure                      sendToSink( aSink: tStrNotifyProc);
              Function                       existsAsFileFolder(): boolEan;
+             Function                       existsAsFile(): boolEan;
              Function                       iif( aUseSelf: boolEan; aAltStr: String): String;
 
           End;
@@ -180,6 +181,20 @@ Begin
 
           Try
              Result:= directoryExists( Self, False);
+          Except End;
+
+End;
+
+Function
+          tHTypeHelperString.existsAsFile(): boolEan;
+Begin
+          Result:= False;
+          If ( ''= Self)
+             Then
+             Exit;
+
+          Try
+             Result:= fileExists( Self, False);
           Except End;
 
 End;

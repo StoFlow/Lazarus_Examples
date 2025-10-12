@@ -17,6 +17,7 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <MinorVersionNr Value="5"/>
+      <RevisionNr Value="1"/>
       <Attributes pvaDebug="True" pvaPreRelease="True"/>
       <StringTable Comments="Learning tool for dealing with LRS-files" CompanyName="StoFlow (Pseudonym)" InternalName="lrsLearn" LegalCopyright="Multiple" OriginalFilename="lrsLearn" ProductVersion="0.1"/>
     </VersionInfo>

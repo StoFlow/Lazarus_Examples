@@ -116,6 +116,7 @@ Type
              Procedure                      saveLBX2JsnFile( aFileName: String);
              Procedure                      btn_SaveLBXClick( aSender: tObject);
 
+             Function                       tryLoadLBX( aDoKeepList: boolEan; aFileName: String): boolEan;
              Procedure                      btn_LoadLBXClick( aSender: tObject);
 
              Procedure                      btn_ExportClick( aSender: tObject);
@@ -131,6 +132,7 @@ Type
              Procedure                      btn_SelWriteBackClick( aSender: tObject);
              Procedure                      btn_AllWriteBackClick( aSender: tObject);
 
+             Function                       tryLoadScriptsFromFile( aFileName: String): boolEan;
              Procedure                      btn_LoadLRSClick( aSender: tObject);
              Procedure                      btn_SaveLRSClick( aSender: tObject);
              Procedure                      fd_SourceFind( aSender: tObject);
@@ -170,6 +172,7 @@ Type
              Procedure                      mem_SourceChange( aSender: tObject);
              Procedure                      mem_SourceKeyUp( aSender: tObject; Var aKey: Word; aShift: tShiftState);
 
+             Function                       checkCmdLineArgs(): boolEan;
              Procedure                      tim_LoadTimer( aSender: tObject);
 
              Procedure                      img_prevClick( aSender: tObject);
@@ -177,7 +180,9 @@ Type
           Private
 
              reli_List                      : tLResourceListEx;
-             bln_Loading                    : boolEan;
+             //bln_Loading                    : boolEan;
+             bln_InitiallyLoaded            : boolEan;
+             bln_LoadedFrmCmdLine           : boolEan;
              bln_ChangedScript              : boolEan;
              bln_ChangedObjLst              : boolEan;
              bln_ReSetting                  : boolEan;
@@ -404,7 +409,9 @@ Begin
           bln_AlreadySavedToPropStore:= False;
           reli_List                  := Nil;
           bln_ReSetting              := False;
-          bln_Loading                := True;
+          //bln_Loading                := False;
+          bln_InitiallyLoaded        := False;
+          bln_LoadedFrmCmdLine       := False;
           jpsStorage.JSONFileName    := '';  // prevents a too early and sometimes double loading of the settings //getProfileFile();
 End;
 
@@ -437,10 +444,35 @@ Begin
           End;
 End;
 
+
+Function
+          tfrm_lrsLearn_.checkCmdLineArgs(): boolEan;
+Var
+          vStFile2Opn                       : String;
+Begin
+          Result:= False;
+          If ( paramCount< 1)
+             Then
+             Exit;
+
+          vStFile2Opn:= paramStr( 1);
+          mem_CompMsgs.append( 'checkCmdLineArgs() => "'+ vStFile2Opn+ '"....');
+          Try
+
+             Result:= tryLoadScriptsFromFile( vStFile2Opn)
+                      And
+                      tryLoadLBX( False, vStFile2Opn);
+
+             If Result
+                Then
+                SessionProperties:= SessionProperties.rePlace( 'mem_Source.Lines;', '');
+          Except End;
+End;
+
 Procedure
           tfrm_lrsLearn_.tim_LoadTimer( aSender: tObject);
 Begin
-          bln_Loading:= True;
+          //bln_Loading:= True;
           _nOp( [ aSender]);
 
           tim_Load.Enabled:= False;
@@ -448,13 +480,16 @@ Begin
              mem_CompMsgs.clear();
              Application.processMessages();
 
+             bln_LoadedFrmCmdLine:= checkCmdLineArgs();
              mem_CompMsgs.append( 'Loading from property store....');
+
              jpsStorage.restore();
 
              set_changedScript( False);
              set_changedObjLst( False);
           Finally
-             bln_Loading:= False;
+             //bln_Loading:= False;
+             bln_InitiallyLoaded:= True;
           End;
 End;
 
@@ -683,7 +718,7 @@ Procedure
 Begin
           _nOp( [ aSender]);
 
-          If Not bln_Loading
+          If bln_InitiallyLoaded
              Then
              set_changedScript( True);
 End;
@@ -954,11 +989,32 @@ Begin
 
 End;
 
+Function
+          tfrm_lrsLearn_.tryLoadLBX( aDoKeepList: boolEan; aFileName: String): boolEan;
+Begin
+          Result:= False;
+
+          If aDoKeepList
+             Then
+             prepareReLiList( True)
+          Else
+             prepare();
+
+          Result:= reli_List.readFromFile( aFileName, Not aDoKeepList);
+          If Result
+             Then
+             Begin
+                  refreshListFromReLi();
+                  If ( Not aDoKeepList)
+                     Then
+                     set_changedObjLst( False);
+          End;
+
+End;
 
 Procedure
           tfrm_lrsLearn_.btn_LoadLBXClick( aSender: tObject);
 Var
-          vStFNme                           : String;
           vBoKeepList                       : boolEan;
 Begin
           _nOp( [ aSender]);
@@ -978,25 +1034,50 @@ Begin
              Then
              Exit;
 
-          If vBoKeepList
-             Then
-             prepareReLiList( True)
-          Else
-             prepare();
-
-          vStFNme:= od_loadLBX.FileName;
-
-          If reli_List.readFromFile( vStFNme, Not vBoKeepList)
-             Then
-             Begin
-                  refreshListFromReLi();
-                  If ( Not vBoKeepList)
-                     Then
-                     set_changedObjLst( False);
-          End;
+          //If vBoKeepList
+          //   Then
+          //   prepareReLiList( True)
+          //Else
+          //   prepare();
+          //
+          //vStFNme:= od_loadLBX.FileName;
+          //
+          //If reli_List.readFromFile( vStFNme, Not vBoKeepList)
+          //   Then
+          //   Begin
+          //        refreshListFromReLi();
+          //        If ( Not vBoKeepList)
+          //           Then
+          //           set_changedObjLst( False);
+          //End;
+          tryLoadLBX( vBoKeepList, od_loadLBX.FileName);
 
 End;
 
+
+Function
+          tfrm_lrsLearn_.tryLoadScriptsFromFile( aFileName: String): boolEan;
+Begin
+          Result:= False;
+
+          If Not aFileName.existsAsFile()
+             Then
+             Begin
+                  mem_CompMsgs.append( 'tfrm_lrsLearn_.tryLoadScriptsFromFile() => cannot "see" file "'+ aFileName+ '"...');
+                  exit;
+          End;
+
+          mem_CompMsgs.append( 'Loading from "'+ aFileName+ '"...');
+          mem_Source.Lines.beginUpdate();
+          Try
+             mem_Source.Lines.loadFromFile( aFileName);
+             Result:= True;
+          Finally
+             mem_Source.Lines.endUpdate();
+          End;
+          set_changedScript( False);
+          mem_CompMsgs.append( 'Loaded '+ format( '%.0n', [ doUble( mem_Source.Lines.Count)])+ ' lines from "'+ aFileName+ '"');
+End;
 
 Procedure
           tfrm_lrsLearn_.btn_LoadLRSClick( aSender: tObject);
@@ -1120,10 +1201,19 @@ Procedure
 Begin
           _nOp( [ aSender]);
 
+          If Not ( bln_InitiallyLoaded)
+             Then
+             Exit;
+
           prepareReLiList( True);
-          mem_CompMsgs.append( 'Loading list from property store....');
-          reli_List.readFromPropStore( jpsStorage);
-          reli_List.reportScriptResults( @add2ListBoxSink);
+
+          If ( Not bln_LoadedFrmCmdLine)
+             Then
+             Begin
+                  mem_CompMsgs.append( 'Loading list from property store....');
+                  reli_List.readFromPropStore( jpsStorage);
+                  reli_List.reportScriptResults( @add2ListBoxSink);
+          End;
           condFocusResults();
 
 End;
